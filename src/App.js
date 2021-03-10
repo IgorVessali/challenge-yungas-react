@@ -1,6 +1,7 @@
 import React from 'react';
 import database  from '../src/database.json'
 import Table from '../src/components/Table'
+
 //Create the Columns  
 const columns = [
     {

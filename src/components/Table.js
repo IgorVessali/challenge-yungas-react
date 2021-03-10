@@ -1,6 +1,6 @@
 // TableContainer.js
 import React from "react"
-import { useTable } from "react-table"
+import { useTable, useSortBy } from "react-table"
 
 const Table = ({ columns, data }) => {
   const {
@@ -12,7 +12,8 @@ const Table = ({ columns, data }) => {
   } = useTable({
     columns,
     data,
-  })
+  },
+  useSortBy )
 
   return (
     <table {...getTableProps()}>
@@ -20,7 +21,12 @@ const Table = ({ columns, data }) => {
         {headerGroups.map(headerGroup => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+              <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                {column.render("Header")}
+                  <span>
+                    {column.isSorted ? column.isSortedDesc ? '  ↓'  : '  ↑' : '  ↕'}
+                  </span>
+              </th>
             ))}
           </tr>
         ))}
@@ -41,5 +47,7 @@ const Table = ({ columns, data }) => {
     </table>
   )
 }
-
+const generateSortingIndicator = column => {
+  return column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : ""
+}
 export default Table
