@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import database  from '../src/database.json'
+import Table from '../src/components/Table'
+//Create the Columns  
+const columns = [
+    {
+      Header: "First Name",
+      accessor: "name.first",
+    },
+    {
+      Header: "Last Name",
+      accessor: "name.last",
+    },
+    {
+      Header: "Email",
+      accessor: "email",
+    },
+    {
+      Header: "City",
+      accessor: "location.city",
+    },
+    {
+      Header: "State",
+      accessor: "location.state",
+    },
+    {
+      Header: "Region",
+      accessor: "location.region",
+    },
+  ]
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <Table columns={columns} data={database} />
 }
-
 export default App;
