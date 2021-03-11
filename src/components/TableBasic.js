@@ -1,11 +1,11 @@
 // TableContainer.js
 import React, { Fragment } from "react"
-import { useTable, useSortBy, useFilters, usePagination } from "react-table"
 import { Filter, DefaultColumnFilter } from './filters';
+import { useTable, useSortBy, useFilters, usePagination } from "react-table"
 import { Table, Row, Col, Button, Input, CustomInput } from "reactstrap"
 
-//Create componet Table
-const TablePeople = ({ columns, data }) => {
+//Create componet Table with react-table
+const TableBasic = ({ columns, data }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -72,6 +72,7 @@ const TablePeople = ({ columns, data }) => {
           })}
         </tbody>
       </Table>
+      {/* If there is more than one page, it displays the pagination, otherwise the pagination is hidden */}
       { pageOptions.length > 1 && 
         <Row style={{ maxWidth: 1000, 
                       margin: "0 auto", 
@@ -136,9 +137,9 @@ const TablePeople = ({ columns, data }) => {
     </Fragment>
   )
 }
-
+//Render a sorting icon
 const generateSortingIndicator = column => {
   return column.isSorted ? column.isSortedDesc ? '  ↓'  : '  ↑' : '  ↕'
 }
 
-export default TablePeople
+export default TableBasic

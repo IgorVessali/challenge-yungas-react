@@ -1,5 +1,6 @@
 import React from "react";
 
+//Component that renders a modal on the screen
 const Modal = ({id='modal', title, children, onClose= () =>{}}) => {
   const handleOutSideClick = (e) => {
     if (e.target.id === id) onClose()

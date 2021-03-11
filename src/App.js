@@ -1,9 +1,10 @@
 import React, { useState} from 'react';
-import database  from '../src/database.json'
-import TablePeople from '../src/components/TablePeople'
-import { SelectColumnFilter } from '../src/components/filters';
+import Data  from './data'
 import Modal from "../src/components/Modal"
+import TableBasic from '../src/components/TableBasic'
+import { SelectColumnFilter } from '../src/components/filters';
 import { Button } from 'reactstrap';
+
 //Create the Columns  
 const columns = [
     {
@@ -69,19 +70,20 @@ const columns = [
                     </div>
                   </div>
                 </Modal>
-              ) :null}
+              ) :null }
           </div>
         ) 
       }
     },
   ]
 
-//Render a Table
+//Render a table in screen
 function App() {
+  const [data] = useState(Data());
   return <>
     <div className='wrapper'>
       <h1 color>LIST OF PEOPLES</h1>
-      <TablePeople columns={columns} data={database} />
+      <TableBasic columns={columns} data={data} />
     </div>
   </>
 }
