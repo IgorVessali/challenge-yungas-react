@@ -1,7 +1,8 @@
 import React from 'react';
 import database  from '../src/database.json'
-import Table from '../src/components/Table'
+import TablePeople from '../src/components/TablePeople'
 import { SelectColumnFilter } from '../src/components/filters';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 //Create the Columns  
 const columns = [
@@ -36,8 +37,9 @@ const columns = [
 //Render a Table
 function App() {
   return <>
-  <h1>LIST OF PEOPLES</h1>
-  <Table columns={columns} data={database} />
+
+      <h1>LIST OF PEOPLES</h1>
+      <TablePeople columns={columns} data={database} />
   </>
 }
 export default App;
