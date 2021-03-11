@@ -1,7 +1,9 @@
 // TableContainer.js
 import React from "react"
-import { useTable, useSortBy } from "react-table"
+import { useTable, useSortBy, useFilters } from "react-table"
+import { Filter, DefaultColumnFilter } from './filters';
 
+//Create componet Table
 const Table = ({ columns, data }) => {
   const {
     getTableProps,
@@ -12,20 +14,23 @@ const Table = ({ columns, data }) => {
   } = useTable({
     columns,
     data,
+    defaultColumn: { Filter: DefaultColumnFilter }
   },
-  useSortBy )
-
+  useFilters,
+  useSortBy, )
+  //generates HTML by rendering the table
   return (
     <table {...getTableProps()}>
       <thead>
         {headerGroups.map(headerGroup => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                {column.render("Header")}
-                  <span>
-                    {column.isSorted ? column.isSortedDesc ? '  ↓'  : '  ↑' : '  ↕'}
-                  </span>
+              <th {...column.getHeaderProps()}>
+                <div {...column.getSortByToggleProps()}>
+                  {column.render("Header")}
+                  {generateSortingIndicator(column)}
+                </div>
+                <Filter column={column} />
               </th>
             ))}
           </tr>
@@ -47,7 +52,9 @@ const Table = ({ columns, data }) => {
     </table>
   )
 }
+
 const generateSortingIndicator = column => {
-  return column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : ""
+  return column.isSorted ? column.isSortedDesc ? '  ↓'  : '  ↑' : '  ↕'
 }
+
 export default Table

@@ -1,6 +1,7 @@
 import React from 'react';
 import database  from '../src/database.json'
 import Table from '../src/components/Table'
+import { SelectColumnFilter } from '../src/components/filters';
 
 //Create the Columns  
 const columns = [
@@ -27,11 +28,16 @@ const columns = [
     {
       Header: "Region",
       accessor: "location.region",
+      Filter: SelectColumnFilter,
+      filter: 'equals'
     },
   ]
 
-
+//Render a Table
 function App() {
-  return <Table columns={columns} data={database} />
+  return <>
+  <h1>LIST OF PEOPLES</h1>
+  <Table columns={columns} data={database} />
+  </>
 }
 export default App;
