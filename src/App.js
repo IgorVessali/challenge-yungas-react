@@ -40,9 +40,6 @@ const columns = [
       disableFilters: true,
       Cell: row => {      
         const [isModalVisible, setIsModalVisible] = useState(false);
-        console.log(row.row.original);
-        let {name} = row.row.original
-        console.log(name.first)
         return (  
           <div className = 'App'>
               <Button color="primary" onClick={() => setIsModalVisible(true)}>View</Button>
