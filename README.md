@@ -1,6 +1,4 @@
-# Challenge Yungas
-
-This is a [Yungas](https://www.yungas.com.br/) challenge Frontend project.
+# POC React Table
 
 Follow the steps below to run the project locally
 
